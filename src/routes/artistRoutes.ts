@@ -1,9 +1,9 @@
-import { Router } from "express"
+import express from "express";
+import { getAllArtists, getTopArtists } from "../controllers/artistController";
 
-const router = Router()
+const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Get all artists")
-})
+router.get("/", getAllArtists);
+router.get("/top3", getTopArtists);
 
-export default router
+export default router;
