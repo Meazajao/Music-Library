@@ -27,3 +27,8 @@ app.listen(3000, () => {
 app.get("/protected", verifyToken, (req, res) => {
   res.send("This is a protected route");
 });
+
+//protected dashboard route
+app.get("/dashboard", verifyToken, (req, res) => {
+   res.json({ message: "Welcome to the dashboard!", user: (req as any).user });
+});
