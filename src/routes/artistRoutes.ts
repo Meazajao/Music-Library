@@ -1,8 +1,9 @@
 import express from "express";
+import { getAllArtists, getTopArtists } from "../controllers/artistController";
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.json({ message: "List of artists" });
-});
+router.get("/", getAllArtists);
+router.get("/top3", getTopArtists);
 
 export default router;
