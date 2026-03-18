@@ -85,3 +85,4 @@ INSERT INTO playlist_songs (playlist_id, song_id) VALUES
 (1, 5),
 (2, 7),
 (2, 8);
+--Restore database changes after revert issue--
