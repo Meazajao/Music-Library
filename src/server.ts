@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import artistRoutes from "./routes/artistRoutes";
+import albumRoutes from "./routes/albumRoutes";
 import authRoutes from "./routes/authRoutes";
 import { verifyToken } from "./middlewares/authMiddleware";
 import review from "./models/review";
@@ -12,8 +13,9 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/artists", artistRoutes);
 app.use("/auth", authRoutes);
+app.use("/artists", artistRoutes);
+app.use("/albums", albumRoutes);
 app.use("/API", reviewRoutes);
 
 
