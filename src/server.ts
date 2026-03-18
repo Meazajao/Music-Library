@@ -5,6 +5,9 @@ import artistRoutes from "./routes/artistRoutes";
 import albumRoutes from "./routes/albumRoutes";
 import authRoutes from "./routes/authRoutes";
 import { verifyToken } from "./middlewares/authMiddleware";
+import review from "./models/review";
+import reviewRoutes from "./routes/reviewRoutes";
+import { connectMongo } from "./config/mongo";
 
 const app = express();
 
@@ -13,6 +16,7 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/artists", artistRoutes);
 app.use("/albums", albumRoutes);
+app.use("/API", reviewRoutes);
 
 
 app.get("/", (req, res) => {
@@ -33,3 +37,5 @@ app.get("/protected", verifyToken, (req, res) => {
 app.get("/dashboard", verifyToken, (req, res) => {
    res.json({ message: "Welcome to the dashboard!", user: (req as any).user });
 });
+
+connectMongo();
