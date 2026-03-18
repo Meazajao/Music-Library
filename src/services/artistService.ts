@@ -1,4 +1,4 @@
-import db from //database, lägger till när johan är klara med det 
+import { db } from "../config/mysql";
 
 export const getArtists = async () => {
     const [artists] = await db.query("SELECT * FROM artists");
