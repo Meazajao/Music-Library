@@ -3,6 +3,8 @@ import cors from "cors";
 
 import artistRoutes from "./routes/artistRoutes";
 import albumRoutes from "./routes/albumRoutes";
+import songRoutes from "./routes/songRoutes";
+import playlistRoutes from "./routes/playlistRoutes";
 import authRoutes from "./routes/authRoutes";
 import { verifyToken } from "./middlewares/authMiddleware";
 
@@ -13,6 +15,8 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/artists", artistRoutes);
 app.use("/albums", albumRoutes);
+app.use("/songs", songRoutes);
+app.use("/playlists", playlistRoutes);
 
 
 app.get("/", (req, res) => {
