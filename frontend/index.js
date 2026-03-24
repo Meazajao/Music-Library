@@ -1,2 +1,0 @@
-//testar
-alert("Hello, World!");
