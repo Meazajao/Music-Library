@@ -3,8 +3,8 @@ import * as reviewController from '../controllers/reviewController'
 
 const router = express.Router()
 
-router.post('/reviews', reviewController.createReview)
-router.get('/reviews', reviewController.getReviews)
-router.delete('/reviews/:id', reviewController.deleteReview)
+router.post('/', reviewController.createReview)
+router.get('/', reviewController.getReviews)
+router.delete('/:id', reviewController.deleteReview)
 
 export default router;

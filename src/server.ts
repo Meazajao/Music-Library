@@ -5,7 +5,6 @@ import artistRoutes from "./routes/artistRoutes";
 import albumRoutes from "./routes/albumRoutes";
 import authRoutes from "./routes/authRoutes";
 import { verifyToken } from "./middlewares/authMiddleware";
-import review from "./models/review";
 import reviewRoutes from "./routes/reviewRoutes";
 import { connectMongo } from "./config/mongo";
 
@@ -13,11 +12,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/api/auth", authRoutes);
+app.use("/auth", authRoutes);
 app.use("/artists", artistRoutes);
 app.use("/albums", albumRoutes);
-app.use("/api", reviewRoutes);
-
+app.use("/reviews", reviewRoutes);
 
 app.get("/", (req, res) => {
   res.send("Music Library API running");
