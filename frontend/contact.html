@@ -1,11 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Library - Kontakt</title>
 </head>
 <body>
+  <header>
+    <h1>Music Library</h1>
+    <nav>
+      <a href="index.html">Startsida</a>
+      <a href="artists.html">Artister</a>
+      <a href="albums.html">Album</a>
+      <a href="about.html">Om oss</a>
+      <a href="contact.html">Kontakt</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
 
+  <main>
+    <section>
+      <h2>Kontakta oss</h2>
+      <p>Har du frågor om Music Library? Skicka ett meddelande nedan.</p>
+
+      <form>
+        <div>
+          <label for="name">Namn</label><br />
+          <input type="text" id="name" name="name" />
+        </div>
+
+        <br />
+
+        <div>
+          <label for="email">E-post</label><br />
+          <input type="email" id="email" name="email" />
+        </div>
+
+        <br />
+
+        <div>
+          <label for="message">Meddelande</label><br />
+          <textarea id="message" name="message" rows="6"></textarea>
+        </div>
+
+        <br />
+
+        <button type="submit">Skicka</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>Music Library Project</p>
+  </footer>
 </body>
 </html>
