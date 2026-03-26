@@ -5,8 +5,11 @@ export const getAllSongs = async (req: Request, res: Response) => {
   try {
     const songs = await getSongs();
     res.json(songs);
-  } catch (error) {
-    res.status(500).json({ message: "Something went wrong" });
+  } catch (error: any) {
+    console.error("GET ALL SONGS ERROR:", error);
+    res.status(500).json({
+      message: error?.sqlMessage || error?.message || "Something went wrong"
+    });
   }
 };
 
@@ -15,7 +18,10 @@ export const getSong = async (req: Request, res: Response) => {
     const id = Number(req.params.id);
     const song = await getSongById(id);
     res.json(song);
-  } catch (error) {
-    res.status(500).json({ message: "Something went wrong" });
+  } catch (error: any) {
+    console.error("GET SONG ERROR:", error);
+    res.status(500).json({
+      message: error?.sqlMessage || error?.message || "Something went wrong"
+    });
   }
 };
