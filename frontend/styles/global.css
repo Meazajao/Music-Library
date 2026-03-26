@@ -2,3 +2,32 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+.form-section {
+    margin: 30px 0;
+  }
+  
+  form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 15px 0 25px 0;
+  }
+  
+  form input,
+  form button {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  form button {
+    background-color: #111827;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  form button:hover {
+    opacity: 0.9;
+  }
