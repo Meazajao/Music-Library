@@ -2,43 +2,66 @@ import {
     fetchPlaylists,
     createPlaylist,
     fetchPlaylistSongs,
-    addSongToPlaylist,
     removeSongFromPlaylist
   } from "./api.js";
   
   const message = document.getElementById("message");
   const playlistContainer = document.getElementById("playlistContainer");
   const playlistSongsContainer = document.getElementById("playlistSongsContainer");
+  const playlistDetails = document.getElementById("playlistDetails");
   
   const playlistForm = document.getElementById("playlistForm");
   const playlistNameInput = document.getElementById("playlistName");
-  const userIdInput = document.getElementById("userId");
+  const showCreateFormBtn = document.getElementById("showCreateFormBtn");
   
-  const addSongForm = document.getElementById("addSongForm");
-  const playlistIdInput = document.getElementById("playlistIdInput");
-  const songIdInput = document.getElementById("songIdInput");
+  let currentPlaylistId = null;
   
-  const showSongsForm = document.getElementById("showSongsForm");
-  const showPlaylistIdInput = document.getElementById("showPlaylistId");
+  function isLoggedIn() {
+    return !!localStorage.getItem("token");
+  }
+  
+  function getCurrentUserId() {
+    return Number(localStorage.getItem("userId"));
+  }
+  
+  function getCurrentUsername() {
+    return localStorage.getItem("username");
+  }
+  
+  showCreateFormBtn.addEventListener("click", () => {
+    if (!isLoggedIn()) {
+      message.textContent = "Logga in först för att skapa en playlist";
+      return;
+    }
+  
+    playlistForm.classList.toggle("hidden");
+  });
   
   async function loadPlaylists() {
     try {
       const playlists = await fetchPlaylists();
+      const currentUserId = getCurrentUserId();
   
-      message.textContent = "";
       playlistContainer.innerHTML = "";
+      message.textContent = "";
   
-      playlists.forEach((playlist) => {
-        const card = document.createElement("div");
-        card.classList.add("card");
+      const myPlaylists = playlists.filter(
+        (playlist) => playlist.user_id === currentUserId
+      );
   
-        card.innerHTML = `
-          <h3>${playlist.name}</h3>
-          <p><strong>Playlist id:</strong> ${playlist.id}</p>
-          <p><strong>User id:</strong> ${playlist.user_id}</p>
-        `;
+      if (myPlaylists.length === 0) {
+        playlistContainer.innerHTML = "<p>Du har inga playlists än.</p>";
+        return;
+      }
   
-        playlistContainer.appendChild(card);
+      myPlaylists.forEach((playlist) => {
+        const item = document.createElement("button");
+        item.classList.add("playlist-item");
+        item.textContent = playlist.name;
+        item.dataset.id = playlist.id;
+        item.dataset.name = playlist.name;
+  
+        playlistContainer.appendChild(item);
       });
     } catch (error) {
       message.textContent = error.message;
@@ -48,108 +71,120 @@ import {
   playlistForm.addEventListener("submit", async (event) => {
     event.preventDefault();
   
+    if (!isLoggedIn()) {
+      message.textContent = "Logga in först för att skapa en playlist";
+      return;
+    }
+  
     try {
       const name = playlistNameInput.value;
-      const user_id = Number(userIdInput.value);
+      const user_id = getCurrentUserId();
   
       await createPlaylist({ name, user_id });
   
       playlistNameInput.value = "";
-      userIdInput.value = "";
+      playlistForm.classList.add("hidden");
+      message.textContent = "Playlist skapad";
   
       loadPlaylists();
-      message.textContent = "Playlist skapad";
     } catch (error) {
       message.textContent = error.message;
     }
   });
   
-  addSongForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-  
-    try {
-      const playlistId = Number(playlistIdInput.value);
-      const songId = Number(songIdInput.value);
-  
-      await addSongToPlaylist(playlistId, songId);
-  
-      playlistIdInput.value = "";
-      songIdInput.value = "";
-  
-      message.textContent = "Song tillagd i playlist";
-    } catch (error) {
-      message.textContent = error.message;
-    }
-  });
-  
-  showSongsForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-  
-    try {
-      const playlistId = Number(showPlaylistIdInput.value);
-      const songs = await fetchPlaylistSongs(playlistId);
-  
-      playlistSongsContainer.innerHTML = "";
-  
-      if (songs.length === 0) {
-        playlistSongsContainer.innerHTML = "<p>Inga songs i denna playlist.</p>";
-        return;
-      }
-  
-      songs.forEach((song) => {
-        const card = document.createElement("div");
-        card.classList.add("card");
-  
-        card.innerHTML = `
-          <h3>${song.title}</h3>
-          <p><strong>Song id:</strong> ${song.id}</p>
-          <p><strong>Duration:</strong> ${song.duration}</p>
-          <button data-playlist="${playlistId}" data-song="${song.id}" class="remove-song-btn">
-            Ta bort song
-          </button>
-        `;
-  
-        playlistSongsContainer.appendChild(card);
-      });
-  
-      message.textContent = "";
-    } catch (error) {
-      message.textContent = error.message;
-    }
-  });
-  
-  playlistSongsContainer.addEventListener("click", async (event) => {
-    if (event.target.classList.contains("remove-song-btn")) {
+  playlistContainer.addEventListener("click", async (event) => {
+    if (event.target.classList.contains("playlist-item")) {
       try {
-        const playlistId = Number(event.target.dataset.playlist);
-        const songId = Number(event.target.dataset.song);
+        const playlistId = Number(event.target.dataset.id);
+        const playlistName = event.target.dataset.name;
   
-        await removeSongFromPlaylist(playlistId, songId);
+        currentPlaylistId = playlistId;
   
         const songs = await fetchPlaylistSongs(playlistId);
+  
+        playlistDetails.innerHTML = `
+          <h2>${playlistName}</h2>
+          <p>Songs</p>
+        `;
+  
         playlistSongsContainer.innerHTML = "";
   
-        songs.forEach((song) => {
-          const card = document.createElement("div");
-          card.classList.add("card");
+        if (songs.length === 0) {
+          playlistSongsContainer.innerHTML = "<p>Inga låtar i denna playlist ännu.</p>";
+          return;
+        }
   
-          card.innerHTML = `
-            <h3>${song.title}</h3>
-            <p><strong>Song id:</strong> ${song.id}</p>
-            <p><strong>Duration:</strong> ${song.duration}</p>
-            <button data-playlist="${playlistId}" data-song="${song.id}" class="remove-song-btn">
-              Ta bort song
+        songs.forEach((song) => {
+          const songRow = document.createElement("div");
+          songRow.classList.add("song-row");
+  
+          songRow.innerHTML = `
+            <div>
+              <h3>${song.title}</h3>
+              <p>Duration: ${song.duration}</p>
+            </div>
+            <button class="remove-song-btn" data-song="${song.id}">
+              Ta bort
             </button>
           `;
   
-          playlistSongsContainer.appendChild(card);
+          playlistSongsContainer.appendChild(songRow);
         });
-  
-        message.textContent = "Song borttagen från playlist";
       } catch (error) {
         message.textContent = error.message;
       }
     }
   });
+  
+  playlistSongsContainer.addEventListener("click", async (event) => {
+    if (event.target.classList.contains("remove-song-btn")) {
+      if (!isLoggedIn()) {
+        message.textContent = "Logga in först";
+        return;
+      }
+  
+      try {
+        const songId = Number(event.target.dataset.song);
+  
+        await removeSongFromPlaylist(currentPlaylistId, songId);
+  
+        const songs = await fetchPlaylistSongs(currentPlaylistId);
+        playlistSongsContainer.innerHTML = "";
+  
+        if (songs.length === 0) {
+          playlistSongsContainer.innerHTML = "<p>Inga låtar i denna playlist ännu.</p>";
+          message.textContent = "Låt borttagen från playlist";
+          return;
+        }
+  
+        songs.forEach((song) => {
+          const songRow = document.createElement("div");
+          songRow.classList.add("song-row");
+  
+          songRow.innerHTML = `
+            <div>
+              <h3>${song.title}</h3>
+              <p>Duration: ${song.duration}</p>
+            </div>
+            <button class="remove-song-btn" data-song="${song.id}">
+              Ta bort
+            </button>
+          `;
+  
+          playlistSongsContainer.appendChild(songRow);
+        });
+  
+        message.textContent = "Låt borttagen från playlist";
+      } catch (error) {
+        message.textContent = error.message;
+      }
+    }
+  });
+  
+  if (!isLoggedIn()) {
+    message.textContent = "Du är inte inloggad";
+  } else {
+    message.textContent = `Inloggad som ${getCurrentUsername()}`;
+  }
   
   loadPlaylists();

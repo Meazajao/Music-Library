@@ -1,67 +1,74 @@
-import { Request, Response } from 'express'
-import {
-  generateToken,
-  findUserByEmail,
-  createUser,
-  validateUser
-} from '../services/authService'
+import { Request, Response } from "express";
+import { generateToken, findUserByEmail, createUser } from "../services/authService";
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body
+    const { username, email, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({ message: 'Email and password are required' })
+    if (!username || !email || !password) {
+      return res.status(400).json({
+        message: "Username, email and password are required"
+      });
     }
 
-    const existingUser = await findUserByEmail(email)
+    const existingUser = await findUserByEmail(email);
 
     if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' })
+      return res.status(400).json({
+        message: "User already exists"
+      });
     }
 
-    const newUser = await createUser(email, password)
+    const newUser = await createUser(username, email, password);
 
     const token = generateToken({
       id: newUser.id,
       email: newUser.email
-    })
+    });
 
-    return res.status(201).json({
-      message: 'User registered successfully',
-      token
-    })
+    res.status(201).json({
+      message: "user registered successfully",
+      token,
+      user: newUser
+    });
   } catch (error) {
-    console.error(error)
-    return res.status(500).json({ message: 'Server error' })
+    res.status(500).json({ message: "Something went wrong" });
   }
-}
+};
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body
+    const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(400).json({ message: 'Email and password are required' })
+      return res.status(400).json({
+        message: "Email and password are required"
+      });
     }
 
-    const user = await validateUser(email, password)
+    const user = await findUserByEmail(email);
 
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' })
+    if (!user || user.password !== password) {
+      return res.status(400).json({
+        message: "Invalid email or password"
+      });
     }
 
     const token = generateToken({
       id: user.id,
       email: user.email
-    })
+    });
 
-    return res.status(200).json({
-      message: 'Login successful',
-      token
-    })
+    res.json({
+      message: "user logged in successfully",
+      token,
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email
+      }
+    });
   } catch (error) {
-    console.error(error)
-    return res.status(500).json({ message: 'Server error' })
+    res.status(500).json({ message: "Something went wrong" });
   }
-}
+};

@@ -23,3 +23,23 @@ if (topArtistsContainer) {
       topArtistsContainer.innerHTML = "<p>Kunde inte ladda artister.</p>";
     });
 }
+
+const loginStatus = document.getElementById("loginStatus");
+const logoutBtn = document.getElementById("logoutBtn");
+
+const token = localStorage.getItem("token");
+const username = localStorage.getItem("username");
+
+if (token && username) {
+  loginStatus.textContent = `Välkommen, ${username}. Du är inloggad.`;
+  logoutBtn.style.display = "inline-block";
+} else {
+  loginStatus.textContent = "Du är inte inloggad.";
+}
+
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("userId");
+  localStorage.removeItem("username");
+  window.location.href = "login.html";
+});

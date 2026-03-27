@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Album</title>
 </head>
 <body>
     <header>
@@ -12,9 +12,8 @@
           <a href="index.html">Startsida</a>
           <a href="artists.html">Artister</a>
           <a href="albums.html">Album</a>
-          <a href="about.html">Om oss</a>
-          <a href="contact.html">Kontakt</a>
-          <a href="login.html">Login</a>
+          <a href="playlist.html">Playlists</a>
+          <a href="login.html" id="authLink">Login</a>
         </nav>
       </header>
 
@@ -26,7 +25,8 @@
         <h2>Songs in album</h2>
         <section id="songsContainer" class="cards-container"></section>
       </main>
-    
-    
+
+      <script type="module" src="./js/album.js"></script>
+      <script src="./js/auth.js"></script>
 </body>
 </html>
