@@ -18,6 +18,7 @@ async function loadAlbums() {
         <h2>${album.title}</h2>
         <p><strong>Release year:</strong> ${album.release_year}</p>
         <p><strong>Artist id:</strong> ${album.artist_id}</p>
+        <a href="album.html?id=${album.id}">Se album</a>
       `;
 
       albumsContainer.appendChild(card);

@@ -1,25 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/global.css">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./styles/global.css" />
+  <title>Playlists</title>
 </head>
 <body>
-    <header>
-        <h1>Music Library</h1>
-        <nav>
-          <a href="index.html">Startsida</a>
-          <a href="artists.html">Artister</a>
-          <a href="albums.html">Album</a>
-          <a href="about.html">Om oss</a>
-          <a href="contact.html">Kontakt</a>
-          <a href="login.html">Login</a>
-        </nav>
-      </header>
-    
+  <header>
+    <h1>Music Library</h1>
+    <nav>
+      <a href="index.html">Startsida</a>
+      <a href="artists.html">Artister</a>
+      <a href="albums.html">Album</a>
+      <a href="playlist.html">Playlists</a>
+      <a href="login.html" id="authLink">Login</a>
+    </nav>
+  </header>
 
+  <main class="playlist-page">
+    <aside class="playlist-sidebar">
+      <div class="playlist-sidebar-top">
+        <h2>Mina playlists</h2>
+        <button id="showCreateFormBtn">Skapa playlist</button>
+      </div>
 
+      <p id="message"></p>
+
+      <form id="playlistForm" class="hidden">
+        <input
+          type="text"
+          id="playlistName"
+          placeholder="Namn på playlist"
+          required
+        />
+        <button type="submit">Spara</button>
+      </form>
+
+      <div id="playlistContainer" class="playlist-list"></div>
+    </aside>
+
+    <section class="playlist-content">
+      <div id="playlistDetails">
+        <h2>Playlist</h2>
+        <p>Klicka på en playlist till vänster för att se låtarna.</p>
+      </div>
+
+      <div id="playlistSongsContainer" class="songs-list"></div>
+    </section>
+  </main>
+
+  <script type="module" src="./js/playlist.js"></script>
+  <script src="./js/auth.js"></script>
 </body>
 </html>

@@ -3,31 +3,103 @@
     box-sizing: border-box;
 }
 
-.form-section {
-    margin: 30px 0;
+.playlist-page {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 24px;
+    padding: 24px;
   }
   
-  form {
+  .playlist-sidebar {
+    padding: 20px;
+    border-radius: 16px;
+    min-height: 70vh;
+  }
+  
+  .playlist-sidebar-top {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 15px 0 25px 0;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
   }
   
-  form input,
-  form button {
-    padding: 10px 14px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
-  
-  form button {
-    background-color: #111827;
-    color: white;
+  .playlist-sidebar-top button {
     border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
     cursor: pointer;
   }
   
-  form button:hover {
-    opacity: 0.9;
+  .playlist-sidebar-top button:hover {
+    background: #374151;
+  }
+  
+  #playlistForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  #playlistForm input,
+  #playlistForm button {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+  }
+  
+  #playlistForm button {
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  .playlist-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .playlist-item {
+    border: none;
+    padding: 14px;
+    text-align: left;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .playlist-item:hover {
+    background: #374151;
+  }
+  
+  .playlist-content {
+    padding: 24px;
+    border-radius: 16px;
+    min-height: 70vh;
+  }
+  
+  .song-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 12px;
+  }
+  
+  .song-row button {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .song-row button:hover {
+    background: #b91c1c;
   }
