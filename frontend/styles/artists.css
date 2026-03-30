@@ -1,0 +1,79 @@
+
+#message {
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+  
+  /* artists sidan */
+  #artistsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  
+ 
+  .card {
+    background-color: #111827;
+    padding: 24px;
+    border-radius: 14px;
+    border: 1px solid #1f2937;
+  }
+  
+
+  .card h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .card p {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+  
+
+  .card a {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #22c55e;
+  }
+  
+  /* SINGLE ARTIST */
+  #artistContainer {
+    background-color: #111827;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+    max-width: 600px;
+  }
+ 
+  #artistContainer h1 {
+    margin-bottom: 14px;
+    font-size: 26px;
+  }
+  
+  #artistContainer p {
+    margin-bottom: 8px;
+    color: #9ca3af;
+  }
+
+  .artist-img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 900px) {
+    #artistsContainer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 500px) {
+    #artistsContainer {
+      grid-template-columns: 1fr;
+    }
+  }

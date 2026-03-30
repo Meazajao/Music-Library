@@ -1,0 +1,104 @@
+
+#message {
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+ 
+  #albumsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  #albumsContainer .card {
+    background-color: #111827;
+    padding: 24px;
+    border-radius: 14px;
+    border: 1px solid #1f2937;
+    min-height: 190px;
+  }
+  
+  #albumsContainer .card h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  #albumsContainer .card p {
+    margin-bottom: 8px;
+    color: #9ca3af;
+  }
+  
+  #albumsContainer .card a {
+    display: inline-block;
+    margin-top: 12px;
+    color: #22c55e;
+    font-size: 14px;
+  }
+  
+  /* SINGLE ALBUM PAGE */
+  #albumContainer {
+    background-color: #111827;
+    padding: 24px;
+    border-radius: 14px;
+    border: 1px solid #1f2937;
+    margin-bottom: 28px;
+  }
+  
+  #albumContainer h1 {
+    font-size: 28px;
+    margin-bottom: 14px;
+  }
+  
+  #albumContainer p {
+    margin-bottom: 8px;
+    color: #9ca3af;
+  }
+  
+  #songsContainer {
+    display: grid;
+    gap: 18px;
+  }
+  
+  #songsContainer .card {
+    background-color: #111827;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #1f2937;
+  }
+  
+  #songsContainer .card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  #songsContainer .card p {
+    margin-bottom: 10px;
+    color: #9ca3af;
+  }
+  
+ 
+  .playlistSelect {
+    margin-bottom: 12px;
+  }
+  
+  .addSongBtn {
+    margin-top: 4px;
+  }
+ 
+  main h2 {
+    margin-bottom: 18px;
+  }
+  
+
+  @media (max-width: 1100px) {
+    #albumsContainer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    #albumsContainer {
+      grid-template-columns: 1fr;
+    }
+  }

@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Logga in</title>
     <link rel="stylesheet" href="./styles/global.css">
+    <link rel="stylesheet" href="./styles/login-review.css">
 </head>
-  <body>
+<body class="login-page">
     <header>
         <h1>Music Library</h1>
         <nav>
@@ -19,42 +20,50 @@
         </nav>
       </header>
 
-    <h2>Logga in</h2>
-    <form id="loginForm">
-      <input type="email" id="loginEmail" placeholder="E-post" required />
-      <input
-        type="password"
-        id="loginPassword"
-        placeholder="Lösenord"
-        required
-      />
-      <button type="submit">Logga in</button>
-    </form>
+      <main>
+        <h2>Logga in</h2>
+        <form id="loginForm">
+          <input type="email" id="loginEmail" placeholder="E-post" required />
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Lösenord"
+            required
+          />
+          <button type="submit">Logga in</button>
+        </form>
+    
+        <h2>Registrera dig</h2>
+        <form id="registerForm">
+          <input
+            type="text"
+            id="registerUsername"
+            placeholder="Användarnamn"
+            required
+          />
+          <input
+            type="email"
+            id="registerEmail"
+            placeholder="E-post"
+            required
+          />
+          <input
+            type="password"
+            id="registerPassword"
+            placeholder="Lösenord"
+            required
+          />
+          <button type="submit">Registrera dig</button>
+        </form>
+    
+        <p id="error" style="color: red"></p>
 
-    <h2>Registrera dig</h2>
-    <form id="registerForm">
-      <input
-        type="text"
-        id="registerUsername"
-        placeholder="Användarnamn"
-        required
-      />
-      <input
-        type="email"
-        id="registerEmail"
-        placeholder="E-post"
-        required
-      />
-      <input
-        type="password"
-        id="registerPassword"
-        placeholder="Lösenord"
-        required
-      />
-      <button type="submit">Registrera dig</button>
-    </form>
+      </main>
 
-    <p id="error" style="color: red"></p>
+   
+    <footer>
+        <p>Music Library Project</p>
+      </footer>
 
     <script src="js/login.js"></script>
     <script src="./js/auth.js"></script>

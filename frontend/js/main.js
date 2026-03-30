@@ -27,7 +27,7 @@ if (topArtistsContainer) {
 }
 
 const loginStatus = document.getElementById("loginStatus");
-const logoutBtn = document.getElementById("logoutBtn");
+
 
 const token = localStorage.getItem("token");
 const username = localStorage.getItem("username");
