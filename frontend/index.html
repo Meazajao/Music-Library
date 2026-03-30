@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Library - Startsida</title>
+  <link rel="stylesheet" href="./styles/global.css">
+</head>
+<body>
+  <header>
+    <h1>Music Library</h1>
+    <nav>
+      <a href="index.html">Startsida</a>
+      <a href="artists.html">Artister</a>
+      <a href="albums.html">Album</a>
+      <a href="playlist.html">Playlists</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="login.html" id="authLink">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <p id="loginStatus"></p>
+    <button id="logoutBtn" style="display: none;">Logga ut</button>
+    
+    <section>
+      <h2>Välkommen till Music Library</h2>
+      <p>
+        Här kan du upptäcka artister, album och låtar samt se våra top 3 mest lyssnade artister.
+      </p>
+    </section>
+
+    <section>
+      <h2>Top 3 mest lyssnade artister</h2>
+      <div id="top-artists">
+        <p>Laddar artister...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Music Library Project</p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="./js/auth.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logga in</title>
+    <link rel="stylesheet" href="./styles/global.css">
+</head>
+  <body>
+    <header>
+        <h1>Music Library</h1>
+        <nav>
+          <a href="index.html">Startsida</a>
+          <a href="artists.html">Artister</a>
+          <a href="albums.html">Album</a>
+          <a href="playlist.html">Playlists</a>
+          <a href="reviews.html">Reviews</a>
+          <a href="login.html" id="authLink">Login</a>
+        </nav>
+      </header>
+
+    <h2>Logga in</h2>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="E-post" required />
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Lösenord"
+        required
+      />
+      <button type="submit">Logga in</button>
+    </form>
+
+    <h2>Registrera dig</h2>
+    <form id="registerForm">
+      <input
+        type="text"
+        id="registerUsername"
+        placeholder="Användarnamn"
+        required
+      />
+      <input
+        type="email"
+        id="registerEmail"
+        placeholder="E-post"
+        required
+      />
+      <input
+        type="password"
+        id="registerPassword"
+        placeholder="Lösenord"
+        required
+      />
+      <button type="submit">Registrera dig</button>
+    </form>
+
+    <p id="error" style="color: red"></p>
+
+    <script src="js/login.js"></script>
+    <script src="./js/auth.js"></script>
+  </body>
+</html>
