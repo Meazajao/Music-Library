@@ -1,3 +1,5 @@
+import { getTopArtists } from "./api.js";
+
 const topArtistsContainer = document.getElementById("top-artists");
 
 if (topArtistsContainer) {

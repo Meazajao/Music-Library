@@ -81,3 +81,9 @@ export async function removeSongFromPlaylist(playlistId, songId) {
   if (!response.ok) throw new Error("Kunde inte ta bort song från playlist");
   return await response.json();
 }
+
+export async function getTopArtists() {
+  const response = await fetch(`${BASE_URL}/artists/top3`);
+  if (!response.ok) throw new Error("Kunde inte hämta top 3 artister");
+  return await response.json();
+}
