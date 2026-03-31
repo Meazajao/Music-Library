@@ -1,0 +1,52 @@
+
+.login-page main {
+    max-width: 500px;
+  }
+  
+  .login-page h2 {
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  
+  .login-page form {
+    margin-bottom: 24px;
+  }
+  
+ 
+  
+  .reviews-page main {
+    max-width: 800px;
+  }
+  
+  .reviews-page h2 {
+    margin-bottom: 16px;
+  }
+  
+  .reviews-page #reviewForm {
+    margin-bottom: 30px;
+  }
+  
+  .reviews-page #reviewList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .reviews-page #reviewList li {
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 14px;
+    padding: 18px;
+  }
+  
+  .reviews-page strong {
+    font-size: 16px;
+    color: white;
+  }
+  
+  .reviews-page button {
+    margin-top: 10px;
+    background-color: #ef4444;
+    color: white;
+  }

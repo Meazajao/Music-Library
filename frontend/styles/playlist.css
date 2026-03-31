@@ -1,0 +1,125 @@
+
+.playlist-page {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  
+  /* SIDEBAR */
+  .playlist-sidebar {
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 14px;
+    padding: 20px;
+  }
+  
+  .playlist-sidebar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  
+  .playlist-sidebar-top h2 {
+    margin-bottom: 0;
+  }
+  
+  /* STATUS TEXT */
+  #message {
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+  
+  #playlistForm {
+    margin-bottom: 18px;
+  }
+ 
+  .playlist-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .playlist-item {
+    width: 100%;
+    text-align: left;
+    background-color: #1f2937;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+  }
+  
+  .playlist-content {
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 14px;
+    padding: 24px;
+    min-height: 500px;
+  }
+  
+  #playlistDetails {
+    margin-bottom: 24px;
+  }
+  
+  #playlistDetails h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  
+  #playlistDetails p {
+    color: #9ca3af;
+  }
+
+  .songs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+
+  .song-row {
+    background-color: #1f2937;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 16px 18px;
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .song-row h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  
+  .song-row p {
+    color: #9ca3af;
+    font-size: 14px;
+  }
+
+  .remove-song-btn {
+    background-color: #ef4444;
+    color: white;
+  }
+  
+  .remove-song-btn:hover {
+    background-color: #dc2626;
+  }
+  
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .playlist-page {
+      grid-template-columns: 1fr;
+    }
+  
+    .playlist-content {
+      min-height: auto;
+    }
+  }
