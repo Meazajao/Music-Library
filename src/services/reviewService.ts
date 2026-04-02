@@ -11,3 +11,16 @@ export const getReviews = async () => {
 export const deleteReview = async (id: string) => {
     return await Review.findByIdAndDelete(id);
 };
+
+export const updateReviewById = async (
+    id: string,
+    title: string,
+    content: string,
+    rating: number
+) => {
+    return await Review.findByIdAndUpdate(
+        id,
+        { title, content, rating },
+        { new: true }
+    );
+};

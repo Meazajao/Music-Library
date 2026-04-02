@@ -20,3 +20,10 @@ export const getArtist = async (id: number) => {
 
   return rows[0];
 };
+
+export const updateArtistById = async (id: number, name: string, genre: string, bio: string, play_count: number) => {
+  await db.query(
+    "UPDATE artists SET name = ?, genre = ?, bio = ?, play_count = ? WHERE id = ?",
+    [name, genre, bio, play_count, id]
+  );
+};

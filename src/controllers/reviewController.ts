@@ -27,3 +27,12 @@ export const deleteReview = async ( req: Request<{ id: string }>, res: Response 
         res.status(500).json({ message: 'Error deleting review', error })
     }
 }
+
+export const updateReview = async (req: Request<{ id: string }>, res: Response) => {
+  try {
+    const updated = await reviewService.updateReviewById(req.params.id, req.body.title, req.body.content, req.body.rating);
+    res.json(updated);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating review", error });
+  }
+};
